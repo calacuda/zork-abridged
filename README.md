@@ -2,33 +2,33 @@
 A set of python scripts to make text based adventure games with. It includes a sameple game ("Zork Abridged", A.K.A "Xork")
 
 
-## ~~~
-## Intro:
-## ~~~
+### ~~~
+### Intro:
+### ~~~
 
 This project is a python program that makes a text based adventure game. It
 is writen in Python3 (originally 3.6, but 3.7, 3.8 also work).
 
 
-## ~~~
-## running a sample game:
-## ~~~
+### ~~~
+### running a sample game:
+### ~~~
 
 simply run main.py. to reset the sample game, run builder and enter "yes"
 to the two prompts. to make your own game see the using section below.
 
 
-## ~~~
-## using:
-## ~~~
+### ~~~
+### using:
+### ~~~
 
 one simply needs to edit a few json files or make you're own versions of 
 the json files with the same names.
 
 
-## ~~~
-## Files:
-## ~~~
+### ~~~
+### Files:
+### ~~~
 
 
 ### * game.py.bak:
