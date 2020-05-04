@@ -1,0 +1,14 @@
+TODO's:
+	[Done]	1. finish implementing quests.
+	[]	2. implement a sound track with the vlc module.
+	[Done]	3. use a json file to store information about the zones.
+	[]	4. use an sql database for roads.
+	[Done]	5. add a funchtion to game.py that checks to see if a
+		   given quest is completeable, ie. if a given quest win
+		   conditions are met.
+	[]	6. make an out function that knows the size of teh terminal
+		   its runing in and with print things apropriatly and
+		   erase whats no longer needed.  
+	[]	7. make a json that has the game script and messages in it,
+		   inclulding all the messages that are built into the game
+		   engine at the moment. 

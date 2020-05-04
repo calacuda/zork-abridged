@@ -1,0 +1,58 @@
+{
+    "player": null,
+    "zones": [
+	{
+	    "location": [1,1],
+	    "name": "Forest:",
+	    "welcome": "You're in nature... hooray. For real though, beware of tics."
+	},
+	{
+	    "location": [1,0],
+	    "name": "Big Scary Death Mountain:",
+	    "welcome": "If you saw the name on the sign, then why did you come here? You... did see the sign. Right?",
+	    "description": "Wait, is that a dead dude... Okay... time to go."
+	},
+	{
+	    "location": [0,0],
+	    "name": "But Ass Cold Mountain-Top Tundra:",
+	    "welcome": "Maybe bring a jacket and not that ragid lv. 1 adventures gear."
+	},
+	{
+	    "location": [0,1],
+	    "name": "The Fjords:",
+	    "welcome": "Hey look I think I see a viking!",
+	    "description": "Never mind it's just some bearded norwegian in a canoe. but like for real though, there's a sword \non the ground"
+	}
+    ],
+    "enemies": [
+	{
+	    "name": "Orc",
+	    "location": [0,0],
+	    "type": "e"
+	},
+	{
+	    "name": "Troll",
+	    "location": [0,0],
+	    "type": "e"
+	}
+    ],
+    "items": [
+	{
+	    "name": "Excalibur",
+	    "location": [0,1],
+	    "type": "i"
+	},
+	{
+	    "name": "HyperPotion",
+	    "location": [0,1],
+	    "type": "i"
+	}
+    ],
+    "NPCs": [
+	{
+	    "name": "The Human Popsicle",
+	    "location": [1,0],
+	    "type": "c"
+	}
+    ]
+}
