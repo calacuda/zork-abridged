@@ -44,6 +44,7 @@ def make_zone(params):
     makes a zone
     """
     engine.set_zone_text(tuple(params.get("location")), params.get("name"), params.get("welcome"), params.get("description"))
+    engine.zones[tuple(params.get("location"))].sound = params.get("sound")
 
 
 def generate_zones(zones):
@@ -59,10 +60,17 @@ def make_a_thing(params):
     returns and item of the secifications
     """
     try:
-        return eval(f"{params.get('name').replace(' ', '')}()")
+        thing = eval(f"{params.get('name').replace(' ', '')}()")    
     except:
-        print("that item doesn't exsist yet")
-        print(params)
+        if params['type'] == 'c':
+            thing = NPC(name=params.get("name"), job=params.get("job"), immortality=params.get("imortality"))
+        elif params['type'] == 'e':
+            thing = Enemy(name=params.get("name"), species=params.get("species"), job=params.get("job"), immortality=params.get("imortality"))
+        else:  # elif params['type'] == 'i' or anythin else:
+            print("that item doent excist yet!")
+            print(params)
+        
+    return thing
 
 
 def distribute_things(things):

@@ -4,24 +4,28 @@
 	{
 	    "location": [1,1],
 	    "name": "Forest:",
-	    "welcome": "You're in nature... hooray. For real though, beware of tics."
+	    "welcome": "You're in nature... hooray. For real though, beware of tics.",
+	    "sound": "forest_001.mp3"
 	},
 	{
 	    "location": [1,0],
 	    "name": "Big Scary Death Mountain:",
 	    "welcome": "If you saw the name on the sign, then why did you come here? You... did see the sign. Right?",
-	    "description": "Wait, is that a dead dude... Okay... time to go."
+	    "description": "Wait, is that a dead dude... Okay... time to go.",
+	    "sound": "storm_001.mp3"
 	},
 	{
 	    "location": [0,0],
 	    "name": "But Ass Cold Mountain-Top Tundra:",
-	    "welcome": "Maybe bring a jacket and not that ragid lv. 1 adventures gear."
+	    "welcome": "Maybe bring a jacket and not that ragid lv. 1 adventures gear.",
+	    "sound": "howling_wind.mps3"
 	},
 	{
 	    "location": [0,1],
 	    "name": "The Fjords:",
 	    "welcome": "Hey look I think I see a viking!",
-	    "description": "Never mind it's just some bearded norwegian in a canoe. but like for real though, there's a sword \non the ground"
+	    "description": "Never mind it's just some bearded norwegian in a canoe. but like for real though, there's a sword \non the ground",
+	    "sound": "rocky_beach_001.mp3"
 	}
     ],
     "enemies": [
@@ -52,6 +56,7 @@
 	{
 	    "name": "The Human Popsicle",
 	    "location": [1,0],
+	    "species": "human",
 	    "type": "c"
 	}
     ]

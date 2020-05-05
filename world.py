@@ -20,6 +20,7 @@ class Zone:
         self.items = {}
         self.npcs = set(())
         self.enemies = set(())
+        self.sound = None
         # self.move_order =
 
     def __str__(self):

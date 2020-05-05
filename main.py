@@ -29,7 +29,7 @@ def load(command):
     """
     loads a pickled game file
     """
-    fname = input("name a save file to load, default is 'save_file_1.pickle'\n    <:|:> ")
+    fname = input("name a save file to load, default is 'save_1.pickle'\n    <:|:> ")
     if fname.strip() == "":
         fname = "save_1.pickle"
     f = open(fname, 'rb')
@@ -43,9 +43,9 @@ def save(command):
     """
     pickles the game object to a file of the users choosing.
     """
-    fname = input("name you save file, default is 'save_file_1.pickle'\n    <:|:> ")
+    fname = input("name you save file, default is 'save_1.pickle'\n    <:|:> ")
     if fname.strip() == "":
-        fname = "save_file_1.pickle"
+        fname = "save_1.pickle"
     f = open(fname, 'wb')
     pickle.dump(engine, f)
     f.close()    
@@ -65,7 +65,7 @@ def check(command):
     e.g if command says equipment then check() will print the players 
     equipment, etc.
     """
-    if args.debug:
+    if len(args.debug.intersection({"all", 'check'})):
         print(f"check({command})")
     for word, pos in command:
         if word in ["equipment", "equip", "equiped"]:
@@ -145,7 +145,7 @@ def equip(command):
     """
     finds the equipment object and equips in on the player  
     """
-    if args.debug:
+    if len(args.debug.intersection({"all", 'equip'})):
         print(f"equip({command})")
     equip_names = [item.name for item in engine.player.inventory if item.family == "equipment"]
     for word, pos in command:
@@ -159,7 +159,7 @@ def go(command):
     """
     sends the player in 'direction' 
     """
-    if args.debug:
+    if len(args.debug.intersection({"all", 'go'})):
         print(f"go({command})")
     directions = ["north", "south", "east", "west", "n", "s", "e", "w"]
     for word, pos in command:
@@ -192,21 +192,32 @@ def look(command):
         text += ' ' + engine.world.current_zone.desc
     print(text)
 
+
+def heal(command):
+    """
+    auto heals the player.
+    """
+    print("not programmed yet")
+    
+    
 def use(comand):
     """
     uses an item in the players inventory and applies its effects
     :param comand:
     :return:
     """
-    if args.debug:
+    if len(args.debug.intersection({'all', 'use'})):
         print(f"use({comand})")
+        # print(f"engine.player.inventory : ", engine.player.inventory)
     old_health = engine.player.current_health
     for word, pos in comand:
-        if word in engine.player.inventory:
-            item = engine.player.items.get(word)
-            player.use(comand)
+        if len(args.debug.intersection({'all', 'use'})):
+            print(engine.player.inventory_membership_test(word))
+        if engine.player.inventory_membership_test(word):
+            print(f"using item: {word}")
+            item = engine.player.get_item(word)
+            print(engine.player.use(item))
             print(engine.line_break)
-            print(item.use_text(player.current_health - old_health))
         elif pos != 'vb':
             print(f"I do not know the meaning of the word, '{word}'.")
         else:
@@ -217,7 +228,7 @@ def attack(command):
     """
     calls engine.atttack(target) where target is the target from command.
     """
-    if args.debug:
+    if len(args.debug.intersection({'all', 'attack'})):
         print(f"attack({command})")
     for word, pos in command:
         if pos == "pn":
@@ -228,7 +239,7 @@ def attack(command):
         if enemy.name == target:
             target = enemy
             break
-    if args.debug:
+    if len(args.debug.intersection({'all', 'attack'})):
         print("target : ", target)
     try:
         engine.attack(engine.player, target)
@@ -243,7 +254,7 @@ def word_split(sentence):
     will split word sentence in to words. two word proper nouns will be 
     one entry.
     """
-    if args.debug:
+    if len(args.debug.intersection({'all', 'word_split'})):
         print(f"word_split({sentence})", type(sentence))
     temp_words = words.copy()
     for enemy in engine.world.current_zone.enemies:
@@ -255,7 +266,7 @@ def word_split(sentence):
     for item in engine.player.inventory:
         temp_words.update({item.name: "n"})
     temp_words.update(words)
-    if args.debug:
+    if len(args.debug.intersection({'all', 'word_split'})):
         print("temp_words : ", temp_words)
     items = engine.player.inventory + list(engine.world.current_zone.items.keys())
     enemies = engine.world.current_zone.enemies
@@ -277,11 +288,11 @@ def word_split(sentence):
             #    print("entry :", entry)
             if entry not in parsed:
                 parsed.append(entry)
-                if args.debug:            
+                if len(args.debug.intersection({'all', 'word_split'})):            
                     print(f"appending {entry} to parsed")
         except UnboundLocalError:
             args_error()
-    if args.debug:
+    if len(args.debug.intersection({'all', 'word_split'})):
         print("parsed : ", parsed)
     return parsed
 
@@ -290,7 +301,7 @@ def pre_prossesing(command):
     """
     parses 'command'
     """
-    if args.debug:
+    if len(args.debug.intersection({'all', 'pre_prossesing'})):
         print(f"pre_prossesing({command})", type(command))
     index_counter = 0
     for word, part_of_speach in command:
@@ -303,7 +314,7 @@ def pre_prossesing(command):
     except:
         print("I sence that you have no actions in your command. Try again.")
         return             
-    if args.debug:
+    if len(args.debug.intersection({'all', 'pre_prossesing'})):
         print("command", command)
     return command
 
@@ -334,7 +345,7 @@ def switch(in_battle=False):
         legal_moves = ("attack", "heal", "use", "equip", "run")    
     else:
         legal_moves = [word for word in words if words.get(word) == 'vb' and word != 'run']
-    if args.debug:
+    if len(args.debug.intersection({'all', 'switch'})):
         print("legal_moves : ", legal_moves)
     prossesed_cmd = [("foobar", "slang")]
     while prossesed_cmd != None and prossesed_cmd[0][0] not in legal_moves:
@@ -342,11 +353,11 @@ def switch(in_battle=False):
         command = [word for word in command if word not in stop_words]
         command = word_split(command)
         prossesed_cmd = pre_prossesing(command)
-        if args.debug:
+        if len(args.debug.intersection({'all', 'switch'})):
             print("prossesed_cmd : ", prossesed_cmd)            
     try:
         funct = prossesed_cmd[0][0]  # the verb input by the user
-        if args.debug:
+        if len(args.debug.intersection({'all', 'switch'})):
             print("funct : ", funct)
         eval(funct+f"(prossesed_cmd[1:])")
     except TypeError:
@@ -396,8 +407,9 @@ if __name__ == "__main__":
                                                  "to followed by the name of your save file ot load "
                                                  "an old game")
     parser.add_argument("-l", "--load", dest="engine", default="engine.pickle", type=str)
-    parser.add_argument("-d", "--debug", dest="debug", default=False, type=bool)
+    parser.add_argument("-d", "--debug", dest="debug", default='', type=str, nargs='+')
     args = parser.parse_args()
+    args.debug = set(args.debug)
                                                                                             
     try:
         engine = pickle.load(open(args.engine, 'rb'))

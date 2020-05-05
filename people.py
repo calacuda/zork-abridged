@@ -19,7 +19,7 @@ dirt_sword = equip.DirtSword()
 class Character:
     def __init__(self, name, job, immortality):
         self.name = name
-        self.job = job.lower()
+        self.job = job.lower() if job != None else job
         self.inventory = []
         self.alive = True
         self.money = 0
@@ -40,19 +40,24 @@ class Character:
         item = item.pop()
         affects = item.use()
         if item.genus == "buffs":
+            old_stat = self.stats.get(affects[0])
             self.stats[affects[0]] *= affects[1]
+            param = self.stats[affects[0]] - old_stat
         elif item.genus == "potion":
+            old_health = self.get_health()
             hlth = self.stats.get("hlth") + affects
             if hlth >= self.base_stats.get("hlth"):
                 self.full_heal()
             else:
                 self.stats["hlth"] += affects
             self.hlth_update()
+            param = self.get_health() - old_health
         else:
             print("ERROR")
         if item.uses >= 0:
             self.inventory.remove(item)
-
+        return item.use_text(param)
+            
     def get_item(self, name_or_kind):
         for posesion in self.inventory:
             if posesion.family == "equipment":
@@ -227,7 +232,7 @@ class PlayerCharacter(Character):
 
 
 class NPC(Character):
-    def __init__(self, name, job, immortality, quest=None):
+    def __init__(self, name, job, immortality=True, quest=None):
         super().__init__(name=name, job=job, immortality=immortality)
         self.money = inf
         self.quest = quest
