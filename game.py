@@ -14,6 +14,8 @@ import items as itm
 import people as ppl
 import enemies as enm
 import world
+import vlc
+import os
 
 
 class Game:
@@ -145,13 +147,11 @@ class Game:
         handle player movement throuh out the world.
         """
         self.player.add_move()
-        new_zone = self.world.travel(direction)
-        if not new_zone:
+        new_zone_text = self.world.travel(direction)
+        if not new_zone_text:
             print(self.make_heading() + "Thow, shalt not pass!")
         else:
-            print(self.make_heading() + new_zone)
-        # if self.agro:
-        #     do agro stuff
+            print(self.make_heading() + new_zone_text)
             
     def spawn_player(self, name=""):
         """

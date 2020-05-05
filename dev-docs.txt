@@ -1,8 +1,10 @@
+# [X] means that that ide is scrapped
+
 TODO's:
 	[Done]	1. finish implementing quests.
-	[]	2. implement a sound track with the vlc module.
+	[Done]	2. implement a sound track with the vlc module.
 	[Done]	3. use a json file to store information about the zones.
-	[]	4. use an sql database for roads.
+	[X]	4. use an sql database for roads.
 	[Done]	5. add a funchtion to game.py that checks to see if a
 		   given quest is completeable, ie. if a given quest win
 		   conditions are met.

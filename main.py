@@ -12,7 +12,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from random import random                                             
-
+import sound
 
 stop_words = set(stopwords.words('english'))
 words = {"attack": 'vb', "atk": 'vb', "take": "vb", "heal": "vb", "loot": "vb", "go": "vb",
@@ -23,7 +23,7 @@ cmd_spec_args = {"equipment": 'n', "stats": 'n', "items": 'n',
                  "inventory": 'n', "quests": 'n', #"equip": 'n', 
                  "equiped": 'n', "complete": 'n', "status": 'n',
                  "set": 'n',}
-
+    
 
 def load(command):
     """
@@ -50,7 +50,7 @@ def save(command):
     pickle.dump(engine, f)
     f.close()    
     print(f" - saved to file {fname} - ")
-            
+
 
 def args_error():
     """
@@ -166,7 +166,11 @@ def go(command):
         if pos == 'n' and word in directions:
             direction = word
     try:
+        old_sound = engine.world.current_zone.sound
         engine.move(direction)
+        new_sound = engine.world.current_zone.sound
+        if new_sound != old_sound:
+            BKG_MUSIC.play(new_sound)
         # print(engine.make_heading())
         # print(engine.world.current_zone)
     except UnboundLocalError:
@@ -330,6 +334,7 @@ def get_cmd():
         answer = input("are you sure you want to leave?\n    <:|:>  ").lower()
         if answer in ["yes", "y"]:
             print("Thank you for playing!")
+            BKG_MUSIC.stop()
             exit()
         else:
             print("i'll take that as a no")
@@ -421,7 +426,6 @@ if __name__ == "__main__":
                 print(" - understood - ")
                 engine = pickle.load(open(fname, 'rb'))
                 break
-    print(type(engine.world.zones[1, 1].welcome))
     print(f"{engine.line_break}\n"
           f"Welcome to Xork! The totally legit, totally not a rip off of Zork, and totally amazing game. also, no Xork"
           f"\n"
@@ -433,5 +437,5 @@ if __name__ == "__main__":
           f"\n\n"
           + engine.make_heading() +
           f"{engine.world.get_location()}")
-    
+    BKG_MUSIC = sound.Music(engine.world.current_zone.sound)    
     main()
