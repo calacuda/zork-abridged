@@ -28,8 +28,8 @@ class Zone:
 
     def default_conects(self):
         cant_go_there = 'there a sign that says, "Construction in progress. We appreciate your patients." with a \n' \
-                        'picture of some god awful post modern building that looks like it was designed by an \n' \
-                        'arthritic 4 y/o with a crayon. So you will have to find another way!'
+                        'picture of some god awful post modern building that looks like it was designed in \n' \
+                        'crayon by an arthritic 4 y/o. look, point is  you will have to find another way!'
         conects = {"n": cant_go_there, "s": cant_go_there, "e": cant_go_there, "w": cant_go_there,
                         "u": cant_go_there, "d": cant_go_there, "nw": cant_go_there, "ne": cant_go_there,
                         "sw": cant_go_there, "se": cant_go_there,}

@@ -248,7 +248,7 @@ def attack(command):
     try:
         engine.attack(engine.player, target)
     except UnboundLocalError:
-        print("Watch where your wwinging that thing! Do you even have a target in mind?") 
+        print("Watch where your swinging that thing! Do you even have a target in mind?") 
     if not target.alive:
         print(f"{engine.player}, defeated {target}!")
     

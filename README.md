@@ -1,17 +1,43 @@
 # zork-abridged
-A set of python scripts to make text based adventure games with. It includes a sameple game ("Zork Abridged", A.K.A "Xork")
+A set of python scripts to make text based adventure games with. It includes a
+sameple game ("Zork Abridged", A.K.A "Xork")
 
 
 ### ~~~
-### Intro:
+## Intro:
 ### ~~~
 
-This project is a python program that makes a text based adventure game. It
-is writen in Python3 (originally 3.6, but 3.7, 3.8 also work).
-
+This project is a python program that makes a text based adventure game.
+It is writen in Python3 (originally 3.6, but 3.7, 3.8 also work).
 
 ### ~~~
-### running a sample game:
+##  ingame comands:
+### ~~~
+
+go: (eg <:|:> go <direction> )
+    <direction> is one of the four cardinal directions, (eg. north, south).
+    used to travle in <direction>.
+use: (eg <:|:> use <item name> )
+     <item name> is a healing or buffing item in the players inventory.
+     used to aply affects of the <item>, (heal if <item> is a healing item, aply
+     buff if buffing item). 
+attack: (eg <:|:> <target> )
+     <target> is the target to attack.
+     only callable either when in battle or when there are enemies in the current
+     zone wrecking havock. 
+look: (eg <:|:> look )
+      used to look around the curent zone and read the description of said zone. 
+loot: (eg <:|:> loot )
+      used to take all items from the current zone  
+take: (eg <:|:> take <item name> )
+      <item name>
+load: (eg <:|:> load )
+save: (eg <:|:> save )
+check: (eg <:|:> check <player data> )
+quest: (eg <:|:> quest <option> )
+
+### ~~~
+##  running a sample game:
 ### ~~~
 
 simply run main.py. to reset the sample game, run builder and enter "yes"
@@ -19,7 +45,7 @@ to the two prompts. to make your own game see the using section below.
 
 
 ### ~~~
-### using:
+##  using:
 ### ~~~
 
 one simply needs to edit a few json files or make you're own versions of 
@@ -27,7 +53,7 @@ the json files with the same names.
 
 
 ### ~~~
-### Files:
+##  Files:
 ### ~~~
 
 
@@ -49,7 +75,8 @@ notes about the development of this game by and for its developers.
 
 ### * params.json
 
-contains all the data about zones, enemies, items, and the like, edit this to edit the game. 
+contains all the data about zones, enemies, items, and the like, edit
+this to edit the game. 
 
 ### * builder.py:
 

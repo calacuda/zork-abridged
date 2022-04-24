@@ -9,7 +9,7 @@ By: Calacuda | MIT Licence | Epoch: ?
 """
 
 from math import inf
-import items 
+import items
 import equipment as equip
 
 bamboo_sword = equip.BambooSword()
@@ -57,7 +57,7 @@ class Character:
         if item.uses >= 0:
             self.inventory.remove(item)
         return item.use_text(param)
-            
+
     def get_item(self, name_or_kind):
         for posesion in self.inventory:
             if posesion.family == "equipment":
@@ -159,14 +159,13 @@ class PlayerCharacter(Character):
 
     def add_quest(self, *quests):
         """
-        adds a quest to self.quests. uses the quest name as a key and the 
+        adds a quest to self.quests. uses the quest name as a key and the
         quest as a value
         """
         if self.current_quest == None:
             self.current_quest = quests[0]
         for quest in quests:
             self.quests.update({quest.name: quest})
-        
 
     def set_current_quest(self, quest):
         """
